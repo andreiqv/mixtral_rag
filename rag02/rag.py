@@ -14,23 +14,13 @@ from langchain.document_transformers import Html2TextTransformer
 from langchain.vectorstores import FAISS
 from langchain.schema.document import Document
 
-ngpus = FAISS.get_num_gpus()
-print("number of GPUs:", ngpus)
+#ngpus = FAISS.get_num_gpus()
+#print("number of GPUs:", ngpus)
 
 
 class Ragger:
     def __init__(self,):
         pass
-
-    def download_docs_from_s3(self, local_folder):
-        from s3_tools import download_folder
-        bucket_name = "pageviewsapi-wringchat"
-        s3_folder = "rag"
-        local_folder = "rag_docs"
-        os.makedirs(local_folder, exist_ok=True)
-        print("Start dowloading...")
-        download_folder(bucket_name, s3_folder, local_folder)
-        print("Finished dowloading...")
 
     def make_embedding(self, text, model_name, chunk_size=500, chunk_overlap=200):
         self.chunked_documents = None
@@ -45,10 +35,6 @@ class Ragger:
         hfe = HuggingFaceEmbeddings(model_name=model_name)
         print("FAISS.from_documents..")
         self.db = FAISS.from_documents(self.chunked_documents, hfe)
-        
-        #import pickle
-        #size_estimate = len(pickle.dumps(self.db))
-        #print("emb size:", size_estimate)
 
     def load_model(self, model_config):
         self.inference = Inference()
