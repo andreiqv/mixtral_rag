@@ -65,7 +65,7 @@ print(f"Evaluation results for corrector: {results_corrector}")
 # Шаг 10: Использование модели для исправления текста
 def correct_text(text):
     inputs = tokenizer_corrector(text, return_tensors="pt", max_length=128, truncation=True, padding='max_length')
-    outputs = model_corrector.generate(input_ids=inputs['input_ids'], attention_mask=inputs['attention_mask'])
+    outputs = model_corrector.generate(input_ids=inputs['input_ids'], attention_mask=inputs['attention_mask'], max_length=150 )
     corrected_text = tokenizer_corrector.decode(outputs[0], skip_special_tokens=True)
     return corrected_text
 
