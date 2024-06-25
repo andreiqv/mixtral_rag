@@ -3,7 +3,7 @@ from datasets import Dataset, load_dataset
 from transformers import (AutoTokenizer, AutoModelForCausalLM, Seq2SeqTrainingArguments, Seq2SeqTrainer, Trainer, TrainingArguments, AutoModelForSequenceClassification)
 
 # Шаг 1: Загрузка данных из CSV файла
-df = pd.read_csv('D:\\diplom\\set.csv')
+df = pd.read_csv('set.csv')
 
 # Шаг 2: Преобразование данных в формат, совместимый с библиотекой datasets
 dataset = Dataset.from_pandas(df[['text', 'textMistaked']])
