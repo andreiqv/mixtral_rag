@@ -83,6 +83,7 @@ model_style = AutoModelForSequenceClassification.from_pretrained(
 
 tokenizer_style.add_special_tokens({'pad_token': '[PAD]'})
 
+
 # Шаг 13: Функция токенизации данных для определения стиля текста
 def tokenize_data_style(examples):
     inputs = examples['text']
@@ -93,15 +94,12 @@ def tokenize_data_style(examples):
 style_dataset = style_dataset.map(tokenize_data_style, batched=True)
 
 # Шаг 15: Разделение на тренировочную и тестовую выборки для определения стиля текста
-train_test_split_style = style_dataset.train_test_split(test_size=0.5)
+train_test_split_style = style_dataset.train_test_split(test_size=0.2)
 train_dataset_style = train_test_split_style['train']
 test_dataset_style = train_test_split_style['test']
-print(train_dataset_style)
-print(test_dataset_style)
-
 
 # Шаг 16: Настройка параметров обучения для определения стиля текста
-training_args_style = Seq2SeqTrainingArguments(
+training_args_style = TrainingArguments(
     output_dir='./results_style',
     evaluation_strategy='epoch',
     learning_rate=2e-5,
@@ -113,7 +111,7 @@ training_args_style = Seq2SeqTrainingArguments(
 )
 
 # Шаг 17: Создание и запуск тренера для определения стиля текста
-trainer_style = Seq2SeqTrainer(
+trainer_style = Trainer(
     model=model_style,
     args=training_args_style,
     train_dataset=train_dataset_style,
@@ -131,8 +129,8 @@ print(f"Evaluation results for style: {results_style}")
 # Шаг 19: Использование модели для определения стиля текста
 def predict_style(text):
     inputs = tokenizer_style(text, return_tensors="pt", truncation=True, padding='max_length')
-    outputs = model_style.forward(inputs['input_ids'], inputs['attention_mask'])
-    predicted_style = outputs.argmax(dim=1).item()
+    outputs = model_style(inputs['input_ids'], inputs['attention_mask'])
+    predicted_style = outputs.logits.argmax(dim=1).item()
     return predicted_style
 
 # Шаг 20: Выбор файла пользователем
