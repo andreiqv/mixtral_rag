@@ -1,6 +1,6 @@
 import pandas as pd
 from datasets import Dataset, load_dataset
-from transformers import AutoTokenizer, AutoModelForCausalLM, Seq2SeqTrainingArguments, Seq2SeqTrainer, AutoModelForSequenceClassification, TrainingArguments
+from transformers import AutoTokenizer, AutoModelForCausalLM, Seq2SeqTrainingArguments, Seq2SeqTrainer, AutoModelForSequenceClassification, TrainingArguments, Trainer
 
 """
 # Шаг 1: Загрузка данных из CSV файла
