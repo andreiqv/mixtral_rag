@@ -10,6 +10,8 @@ style_dataset = Dataset.from_pandas(style_df)
 tokenizer_style = AutoTokenizer.from_pretrained("gpt2", token = "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")
 model_style = AutoModelForSequenceClassification.from_pretrained("gpt2", token="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")
 
+tokenizer_style.add_special_tokens({'pad_token': '[PAD]'})
+
 # Шаг 13: Функция токенизации данных для определения стиля текста
 def tokenize_data_style(examples):
     inputs = examples['text']
