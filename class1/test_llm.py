@@ -93,9 +93,10 @@ def tokenize_data_style(examples):
 style_dataset = style_dataset.map(tokenize_data_style, batched=True)
 
 # Шаг 15: Разделение на тренировочную и тестовую выборки для определения стиля текста
-train_test_split_style = style_dataset.train_test_split(test_size=0.2)
+train_test_split_style = style_dataset.train_test_split(test_size=0.5)
 train_dataset_style = train_test_split_style['train']
 test_dataset_style = train_test_split_style['test']
+
 
 # Шаг 16: Настройка параметров обучения для определения стиля текста
 training_args_style = Seq2SeqTrainingArguments(
