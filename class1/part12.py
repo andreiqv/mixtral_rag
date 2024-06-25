@@ -6,7 +6,8 @@ from transformers import (AutoTokenizer, AutoModelForCausalLM, Seq2SeqTrainingAr
 df = pd.read_csv('dte.csv')
 
 # Шаг 2: Преобразование данных в формат, совместимый с библиотекой datasets
-dataset = Dataset.from_pandas(df[['text', 'textStyle']])
+#dataset = Dataset.from_pandas(df[['text', 'textStyle']])
+dataset = Dataset.from_pandas(df)
 dataset = dataset.rename_column('text', 'target_text')
 dataset = dataset.rename_column('textStyle', 'input_text')
 
