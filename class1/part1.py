@@ -10,12 +10,15 @@ dataset = Dataset.from_pandas(df[['text', 'textMistaked']])
 dataset = dataset.rename_column('text', 'target_text')
 dataset = dataset.rename_column('textMistaked', 'input_text')
 
+model_name = "meta-llama/Meta-Llama-3-8B"
+#model_name = "gpt2"
+
 # Шаг 3: Загрузка токенизатора и модели LLaMA для исправления ошибок
 #tokenizer_corrector = AutoTokenizer.from_pretrained("meta-llama/Meta-Llama-3-8B", token = "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")
 #model_corrector = AutoModelForCausalLM.from_pretrained("meta-llama/Meta-Llama-3-8B", token="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")
-tokenizer_corrector = AutoTokenizer.from_pretrained("gpt2", token="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")
+tokenizer_corrector = AutoTokenizer.from_pretrained(model_name, token="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")
 tokenizer_corrector.pad_token = tokenizer_corrector.eos_token  # Устанавливаем pad_token
-model_corrector = AutoModelForCausalLM.from_pretrained("gpt2", token="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")
+model_corrector = AutoModelForCausalLM.from_pretrained(model_name, token="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")
 # Шаг 4: Функция токенизации данных для исправления ошибок
 def tokenize_data_corrector(examples):
     inputs = examples['input_text']
