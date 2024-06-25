@@ -2,7 +2,6 @@ import pandas as pd
 from datasets import Dataset, load_dataset
 from transformers import AutoTokenizer, AutoModelForCausalLM, Seq2SeqTrainingArguments, Seq2SeqTrainer, AutoModelForSequenceClassification
 
-"""
 
 # Шаг 1: Загрузка данных из CSV файла
 df = pd.read_csv('set.csv')
@@ -67,7 +66,7 @@ def correct_text(text):
     corrected_text = tokenizer_corrector.decode(outputs[0], skip_special_tokens=True)
     return corrected_text
 
-"""
+
 
 # Шаг 11: Загрузка данных для определения стиля текста
 style_df = pd.read_csv('dte.csv')  # CSV файл с данными для определения стиля текста
