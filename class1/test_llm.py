@@ -70,7 +70,7 @@ def correct_text(text):
 """
 
 # Шаг 11: Загрузка данных для определения стиля текста
-style_df = pd.read_csv('dte.csv')  # CSV файл с данными для определения стиля текста
+style_df = pd.read_csv('dte2.csv')  # CSV файл с данными для определения стиля текста
 style_dataset = Dataset.from_pandas(style_df)
 
 # Шаг 12: Загрузка токенизатора и модели для определения стиля текста
