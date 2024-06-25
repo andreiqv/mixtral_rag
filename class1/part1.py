@@ -37,12 +37,12 @@ test_dataset_corrector = train_test_split_corrector['test']
 training_args_corrector = Seq2SeqTrainingArguments(
     output_dir='./results_corrector',
     evaluation_strategy='epoch',
-    learning_rate=2e-5,
+    learning_rate=2e-4, #2e-5,
     per_device_train_batch_size=4,
     per_device_eval_batch_size=4,
     weight_decay=0.01,
-    save_total_limit=3,
-    num_train_epochs=3,
+    save_total_limit=6,
+    num_train_epochs=6,
     predict_with_generate=True
 )
 
