@@ -74,8 +74,14 @@ style_df = pd.read_csv('dte.csv')  # CSV файл с данными для оп�
 style_dataset = Dataset.from_pandas(style_df)
 
 # Шаг 12: Загрузка токенизатора и модели для определения стиля текста
-tokenizer_style = AutoTokenizer.from_pretrained("meta-llama/Meta-Llama-3-8B", token = "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")
-model_style = AutoModelForSequenceClassification.from_pretrained("meta-llama/Meta-Llama-3-8B", token="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")
+tokenizer_style = AutoTokenizer.from_pretrained(
+    "meta-llama/Meta-Llama-3-8B",
+    token = "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")
+model_style = AutoModelForSequenceClassification.from_pretrained(
+    "meta-llama/Meta-Llama-3-8B",
+    token="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")
+
+tokenizer_style.add_special_tokens({'pad_token': '[PAD]'})
 
 # Шаг 13: Функция токенизации данных для определения стиля текста
 def tokenize_data_style(examples):
