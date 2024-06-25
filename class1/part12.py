@@ -3,12 +3,12 @@ from datasets import Dataset, load_dataset
 from transformers import (AutoTokenizer, AutoModelForCausalLM, Seq2SeqTrainingArguments, Seq2SeqTrainer, Trainer, TrainingArguments, AutoModelForSequenceClassification)
 
 # Шаг 1: Загрузка данных из CSV файла
-df = pd.read_csv('set.csv')
+df = pd.read_csv('dte.csv')
 
 # Шаг 2: Преобразование данных в формат, совместимый с библиотекой datasets
-dataset = Dataset.from_pandas(df[['text', 'textMistaked']])
+dataset = Dataset.from_pandas(df[['text', 'textStyle']])
 dataset = dataset.rename_column('text', 'target_text')
-dataset = dataset.rename_column('textMistaked', 'input_text')
+dataset = dataset.rename_column('textStyle', 'input_text')
 
 #model_name = "meta-llama/Meta-Llama-3-8B"
 model_name = "gpt2"
