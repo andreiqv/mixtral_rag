@@ -5,6 +5,7 @@ from transformers import AutoTokenizer, AutoModelForCausalLM, Seq2SeqTrainingArg
 
 # Шаг 1: Загрузка данных из CSV файла
 df = pd.read_csv('set.csv')
+print(df)
 
 # Шаг 2: Преобразование данных в формат, совместимый с библиотекой datasets
 dataset = Dataset.from_pandas(df)
